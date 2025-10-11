@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">uniLocal</string>
+    <string name="app_tagline">Descubre lo mejor de tu región</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="login_subtitle">Ingresa a tu cuenta para explorar lugares increíbles</string>
+    <string name="email_label">Email</string>
+    <string name="email_placeholder">usuario@ejemplo.com</string>
+    <string name="password_label">Contraseña</string>
+    <string name="password_placeholder">••••••••</string>
+    <string name="show_password">Mostrar contraseña</string>
+    <string name="hide_password">Ocultar contraseña</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="or_continue_with">O continúa con</string>
+    <string name="no_account">¿No tienes cuenta?</string>
+    <string name="register_here">Regístrate aquí</string>
+    <string name="are_moderator">¿Eres moderador?</string>
+    <string name="special_access">Acceso especial</string>
+
+    <!-- Content Descriptions -->
+    <string name="logo_description">Logo de uniLocal</string>
+    <string name="google_login">Iniciar sesión con Google</string>
+    <string name="back">Volver</string>
+    <string name="menu">Menú</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="filter">Filtrar</string>
+    <string name="my_location">Mi ubicación</string>
+
+    <!-- Register Screen -->
+    <string name="create_account">Crear Cuenta</string>
+    <string name="join_community">Únete a la comunidad uniLocal</string>
+    <string name="personal_info">Información Personal</string>
+    <string name="complete_data">Completa tus datos para comenzar</string>
+    <string name="full_name">Nombre Completo</string>
+    <string name="full_name_placeholder">Juan Pérez</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="username_placeholder">\@juanperez</string>
+    <string name="username_hint">Será visible para otros usuarios</string>
+    <string name="register_email_placeholder">juan@ejemplo.com</string>
+    <string name="password_min_chars">8 caracteres mínimo</string>
+    <string name="password_uppercase">Una mayúscula</string>
+    <string name="password_number">Un número</string>
+    <string name="city_label">Ciudad</string>
+    <string name="city_placeholder">Selecciona tu ciudad</string>
+    <string name="terms_and_conditions">Acepto los términos y condiciones y la política de privacidad</string>
+    <string name="create_account_button">Crear Cuenta</string>
+    <string name="already_have_account">¿Ya tienes cuenta?</string>
+    <string name="login_here">Inicia sesión</string>
+
+    <!-- Main Map Screen -->
+    <string name="current_location">Medellín, Colombia</string>
+    <string name="search_placeholder">Buscar lugares, comida, hoteles…</string>
+    <string name="interactive_map">Mapa Interactivo</string>
+    <string name="explore_nearby">Explora lugares cercanos</string>
+    <string name="categories">Categorías</string>
+    <string name="see_all">Ver todas</string>
+    <string name="restaurants">Restaurantes</string>
+    <string name="cafes">Cafeterías</string>
+    <string name="hotels">Hoteles</string>
+    <string name="museums">Museos</string>
+    <string name="nearby_places">Lugares Cercanos</string>
+    <string name="see_more">Ver más</string>
+    <string name="open">Abierto</string>
+    <string name="closed">Cerrado</string>
+
+    <!-- Place Detail Screen -->
+    <string name="share">Compartir</string>
+    <string name="favorite">Favorito</string>
+    <string name="open_now">Abierto ahora</string>
+    <string name="closed_now">Cerrado</string>
+    <string name="photos">fotos</string>
+    <string name="local_badge">Local</string>
+    <string name="reviews">reseñas</string>
+    <string name="call">Llamar</string>
+    <string name="route">Ruta</string>
+    <string name="web">Web</string>
+    <string name="address">Dirección</string>
+    <string name="phone">Teléfono</string>
+    <string name="schedule">Horarios</string>
+    <string name="reviews_title">Reseñas</string>
+    <string name="write_review">Escribir reseña</string>
+    <string name="reply">Responder</string>
+
+    <!-- Drawer Menu -->
+    <string name="local_explorer">Explorador Local</string>
+    <string name="create_place">Crear Lugar</string>
+    <string name="my_profile">Mi Perfil</string>
+    <string name="favorites">Favoritos</string>
+    <string name="history">Historial</string>
+    <string name="settings">Ajustes</string>
+    <string name="places_visited">Lugares Visitados</string>
+    <string name="reviews_written">Reseñas Escritas</string>
+    <string name="your_activity">Actividad</string>
+    <string name="app_version">Versión de la App</string>
+
+
+    <string name="previous">Anterior</string>
+    <string name="continue_button">Continuar</string>
+    <string name="submit_review">Enviar para revisión</string>
+    <string name="need_help">¿Necesitas ayuda?</string>
+    <string name="contact_support">Contactar soporte</string>
+    <string name="step_progress">Paso %1$d de %2$d</string>
+
+    <!-- Pantalla principal -->
+    <string name="add_place">Agregar lugar</string>
+
+    <!-- Paso 1 -->
+    <string name="basic_info">Información básica</string>
+    <string name="basic_info_subtitle">Proporciona los detalles generales del lugar.</string>
+    <string name="place_name">Nombre del lugar</string>
+    <string name="place_name_placeholder">Ejemplo: Café Central</string>
+    <string name="category">Categoría</string>
+    <string name="select_category">Selecciona una categoría</string>
+    <string name="description">Descripción</string>
+    <string name="description_placeholder">Escribe una breve descripción del lugar...</string>
+    <string name="min_characters">Mínimo 30 caracteres para una mejor descripción.</string>
+    <string name="place_photos">Fotos del lugar</string>
+    <string name="add">Agregar</string>
+    <string name="remove">Eliminar</string>
+    <string name="max_photos">Máximo 6 fotos por lugar.</string>
+
+    <!-- Categorías -->
+    <string name="category_restaurant">Restaurante</string>
+    <string name="category_cafe">Cafetería</string>
+    <string name="category_hotel">Hotel</string>
+    <string name="category_museum">Museo</string>
+    <string name="category_store">Tienda</string>
+    <string name="category_bakery">Panadería</string>
+    <string name="category_bar">Bar</string>
+    <string name="category_icecream">Heladería</string>
+    <string name="category_library">Librería</string>
+    <string name="category_other">Otro</string>
+
+    <!-- Paso 2 -->
+    <string name="location_contact">Ubicación y contacto</string>
+    <string name="location_contact_subtitle">Agrega la dirección, contacto y horario de atención.</string>
+    <string name="map_location">Ubicación en el mapa</string>
+    <string name="tap_select_location">Toca para seleccionar la ubicación</string>
+
+    <string name="address_placeholder">Ejemplo: Calle 123 #45-67</string>
+
+    <string name="phone_placeholder">Ejemplo: +57 300 123 4567</string>
+
+    <string name="website_placeholder">Ejemplo: www.ejemplo.com</string>
+    <string name="business_hours">Horario de atención</string>
+    <string name="weekdays">Lunes a Viernes</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+
+    <!-- Paso 3 -->
+    <string name="final_review">Revisión final</string>
+    <string name="final_review_subtitle">Verifica que toda la información sea correcta antes de enviar.</string>
+    <string name="location">Ubicación</string>
+    <string name="address_pending">Dirección pendiente</string>
+
+    <string name="images_selected">%1$d imagen(es) seleccionada(s)</string>
+    <string name="important_info">Información importante</string>
+    <string name="important_info_message">Una vez enviado, el lugar será revisado antes de su publicación.</string>
+
+
+    <string name="moderator_panel">Panel del Moderador</string>
+    <string name="place_management">Gestión de Lugares</string>
+    <string name="places">lugares</string>
+
+    <!-- Estados -->
+    <string name="status_pending">Pendiente</string>
+    <string name="status_approved">Aprobado</string>
+    <string name="status_rejected">Rechazado</string>
+
+    <!-- Filtros -->
+    <string name="filter_by_status">Filtrar por estado</string>
+    <string name="pending_plural">Pendientes</string>
+    <string name="approved_plural">Aprobados</string>
+    <string name="rejected_plural">Rechazados</string>
+    <string name="all">Todos</string>
+
+    <!-- Botones -->
+    <string name="approve">Aprobar</string>
+    <string name="reject">Rechazar</string>
+
+    <!-- Estados vacíos -->
+    <string name="no_places_all">No hay lugares registrados aún.</string>
+    <string name="no_places_pending">No hay lugares pendientes de revisión.</string>
+    <string name="no_places_approved">No hay lugares aprobados actualmente.</string>
+    <string name="no_places_rejected">No hay lugares rechazados actualmente.</string>
+
+    <!-- Detalles -->
+    <string name="submitted_by">Enviado por</string>
+    <string name="submitted_date">Fecha de envío</string>
+    <string name="invalid_credentials">Credenciales invalidas</string>
+    <string name="moderator_credentials_hint">Credenciales del moderador</string>
+
+
+</resources>
