@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39549795966",
+    "project_id": "proyectouni-76dcc",
+    "storage_bucket": "proyectouni-76dcc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39549795966:android:965a913b5ddcb5326d622f",
+        "android_client_info": {
+          "package_name": "com.example.proyectouni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDHbu2rBTC1MDSu-oKB0RFIyhiIwfrwtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

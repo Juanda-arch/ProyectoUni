@@ -1,7 +1,6 @@
 package com.example.proyectouni.ui.screens
 
 import android.content.Context
-import android.credentials.CredentialManager
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
@@ -44,7 +43,7 @@ class LoginViewModel : ViewModel() {
 
     // Web Client ID de tu proyecto Firebase
     // IMPORTANTE: Reemplazar con tu propio Web Client ID
-    private val webClientId = "TU_WEB_CLIENT_ID.apps.googleusercontent.com"
+    private val webClientId = "39549795966-t1o1b7uemglfnf204287h4bahvln1a24.apps.googleusercontent.com"
 
     init {
         // Verificar si ya hay una sesión activa
