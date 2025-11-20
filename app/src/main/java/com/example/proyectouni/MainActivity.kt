@@ -9,14 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-
-import com.example.proyectouni.ui.screens.RegisterScreen
-import com.example.proyectouni.ui.screens.MainMapScreen
-import com.example.proyectouni.ui.screens.PlaceDetailScreen
-import com.example.proyectouni.ui.screens.CreatePlaceScreen
-import com.example.proyectouni.ui.screens.ModeratorScreen
+import com.example.proyectouni.ui.screens.*
 import com.example.proyectouni.ui.theme.ProyectoUniTheme
-import com.example.unilocal.ui.screens.LoginScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +39,9 @@ fun UniLocalApp() {
         )
         "register" -> RegisterScreen(
             onNavigate = { screen -> currentScreen = screen }
+        )
+        "forgot_password" -> ForgotPasswordScreen(
+            onNavigateBack = { currentScreen = "login" }
         )
         "main" -> MainMapScreen(
             onNavigate = { screen -> currentScreen = screen }

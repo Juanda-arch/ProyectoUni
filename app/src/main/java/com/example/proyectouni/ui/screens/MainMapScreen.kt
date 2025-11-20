@@ -1,12 +1,9 @@
 package com.example.proyectouni.ui.screens
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -18,31 +15,90 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.proyectouni.R
+import com.example.proyectouni.ui.view.MainMapViewModel
+import com.example.proyectouni.ui.view.UserProfile
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainMapScreen(
-    onNavigate: (String) -> Unit
+    onNavigate: (String) -> Unit,
+    viewModel: MainMapViewModel = viewModel()
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     var searchQuery by remember { mutableStateOf("") }
+    var showLogoutDialog by remember { mutableStateOf(false) }
+
+    val uiState by viewModel.uiState.collectAsState()
+
+    // Manejar estado de logout
+    LaunchedEffect(uiState.isLoggedOut) {
+        if (uiState.isLoggedOut) {
+            onNavigate("login")
+        }
+    }
+
+    // Diálogo de confirmación de logout
+    if (showLogoutDialog) {
+        AlertDialog(
+            onDismissRequest = { showLogoutDialog = false },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Logout,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.error
+                )
+            },
+            title = {
+                Text(
+                    text = "Cerrar sesión",
+                    style = MaterialTheme.typography.titleLarge
+                )
+            },
+            text = {
+                Text("¿Estás seguro de que deseas cerrar sesión?")
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showLogoutDialog = false
+                        viewModel.logout()
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.error
+                    )
+                ) {
+                    Text("Cerrar sesión")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLogoutDialog = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             DrawerContent(
+                currentUser = uiState.currentUser,
                 onNavigate = onNavigate,
                 onCloseDrawer = {
-
-                }
+                    scope.launch {
+                        drawerState.close()
+                    }
+                },
+                onLogout = { showLogoutDialog = true }
             )
         }
     ) {
@@ -52,8 +108,11 @@ fun MainMapScreen(
                     searchQuery = searchQuery,
                     onSearchQueryChange = { searchQuery = it },
                     onMenuClick = {
-
-                    }
+                        scope.launch {
+                            drawerState.open()
+                        }
+                    },
+                    userInitials = uiState.currentUser?.initials ?: "U"
                 )
             }
         ) { paddingValues ->
@@ -86,7 +145,8 @@ fun MainMapScreen(
 private fun MainTopBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
-    onMenuClick: () -> Unit
+    onMenuClick: () -> Unit,
+    userInitials: String
 ) {
     Column(
         modifier = Modifier
@@ -162,9 +222,10 @@ private fun MainTopBar(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "JP",
+                        text = userInitials,
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onPrimary
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }
@@ -240,40 +301,6 @@ private fun MapSection() {
         ) {
             Icon(
                 imageVector = Icons.Default.Coffee,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(16.dp)
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .offset(x = 90.dp, y = 200.dp)
-                .size(32.dp)
-                .clip(CircleShape)
-                .background(Color(0xFF3B82F6))
-                .padding(6.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.Hotel,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(16.dp)
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .offset(x = 260.dp, y = 220.dp)
-                .size(32.dp)
-                .clip(CircleShape)
-                .background(Color(0xFF8B5CF6))
-                .padding(6.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.Museum,
                 contentDescription = null,
                 tint = Color.White,
                 modifier = Modifier.size(16.dp)
@@ -463,7 +490,7 @@ private fun NearbyPlacesSection(onNavigate: (String) -> Unit) {
                     category = "Cafetería",
                     rating = 4.8f,
                     distance = "150m",
-                    imageUrl = "https://images.unsplash.com/photo-1521017432531-fbd92d768814",
+                    imageUrl = "",
                     isOpen = true
                 ),
                 PlaceItem(
@@ -472,7 +499,7 @@ private fun NearbyPlacesSection(onNavigate: (String) -> Unit) {
                     category = "Restaurante",
                     rating = 4.6f,
                     distance = "300m",
-                    imageUrl = "https://images.unsplash.com/photo-1544997872-62aabbe63823",
+                    imageUrl = "",
                     isOpen = true
                 )
             )
@@ -508,18 +535,6 @@ private fun PlaceCard(
                 .padding(12.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Box {
-
-                Box(
-                    modifier = Modifier
-                        .offset(x = 56.dp, y = (-4).dp)
-                        .size(12.dp)
-                        .clip(CircleShape)
-                        .background(if (place.isOpen) Color(0xFF10B981) else Color(0xFFEF4444))
-                        .padding(2.dp)
-                )
-            }
-
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -583,8 +598,10 @@ private fun PlaceCard(
 
 @Composable
 private fun DrawerContent(
+    currentUser: UserProfile?,
     onNavigate: (String) -> Unit,
-    onCloseDrawer: () -> Unit
+    onCloseDrawer: () -> Unit,
+    onLogout: () -> Unit
 ) {
     ModalDrawerSheet(
         modifier = Modifier.width(320.dp)
@@ -619,22 +636,25 @@ private fun DrawerContent(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "JP",
+                            text = currentUser?.initials ?: "U",
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimary
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            fontWeight = FontWeight.Bold
                         )
                     }
                     Column {
                         Text(
-                            text = "Juan Pérez",
+                            text = currentUser?.name ?: "Usuario",
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onPrimary,
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = stringResource(R.string.local_explorer),
+                            text = currentUser?.email ?: "",
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f)
+                            color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.8f),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                 }
@@ -679,6 +699,19 @@ private fun DrawerContent(
                     icon = Icons.Default.Settings,
                     label = stringResource(R.string.settings),
                     onClick = { }
+                )
+
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+
+                // Logout option
+                DrawerMenuItem(
+                    icon = Icons.Default.Logout,
+                    label = "Cerrar sesión",
+                    iconTint = MaterialTheme.colorScheme.error,
+                    onClick = {
+                        onCloseDrawer()
+                        onLogout()
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -736,7 +769,7 @@ private fun DrawerContent(
             }
 
             // Footer
-            Divider()
+            HorizontalDivider()
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.androidx.animation.core.lint)
     implementation(libs.firebase.firestore)
     implementation(libs.googleid)
+    implementation(libs.androidx.compose.animation.core.lint)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,9 +77,10 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
 
     // Google Sign-In con Credential Manager API (nueva forma recomendada)
-    implementation("androidx.credentials:credentials:1.2.2")
-    implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
+    implementation("androidx.credentials:credentials:1.2.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.0")
+
 
     // Play Services Auth (necesario para Google Sign-In)
     implementation("com.google.android.gms:play-services-auth:21.0.0")

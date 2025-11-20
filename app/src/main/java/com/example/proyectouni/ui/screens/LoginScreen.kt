@@ -28,6 +28,7 @@ fun LoginScreen(
     viewModel: LoginViewModel = viewModel()
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var showPassword by remember { mutableStateOf(false) }
